@@ -1,0 +1,27 @@
+add_library(numbers STATIC
+    numbers/float.c
+    numbers/integer.c    
+)
+
+target_include_directories(numbers PUBLIC
+    ${PROJECT_SOURCE_DIR}/inlcude
+)
+
+target_include_directories(numbers PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/numbers
+)
+
+
+add_library(linear_form STATIC
+    linear_form/linear_form.c    
+    linear_form/vector.c    
+)
+
+target_include_directories(linear_form PUBLIC
+    ${PROJECT_SOURCE_DIR}/inlcude
+)
+
+target_include_directories(linear_form PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/linear_form
+)
+

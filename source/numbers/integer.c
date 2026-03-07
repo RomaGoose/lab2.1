@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 #include "number.h"
-#include "integer.h"
+#include "integer_internal.h"
 
 
-static Number* INT_BASE = NULL;
+static Number INT_BASE = {.vtable = NULL};
 
 
 void int_add(void* left, void* right, void* result){
@@ -23,13 +23,17 @@ void int_print(void* value) {
 }
 
 
-Number* get_int_type_info() {
-    if (INT_BASE == NULL){
-        INT_BASE = malloc(sizeof(Number));
-        INT_BASE->vtable->add = int_add;
-        INT_BASE->vtable->mulitply = int_multiply;
-        INT_BASE->vtable->print = int_print;
-        INT_BASE->vtable->size = sizeof(Int);
+Number get_int_base() {
+    if (INT_BASE.vtable == NULL){
+        INT_BASE.vtable = malloc(sizeof(Vtable));
+        INT_BASE.vtable->add = int_add;
+        INT_BASE.vtable->mulitply = int_multiply;
+        INT_BASE.vtable->print = int_print;
+        INT_BASE.vtable->size = sizeof(Int);
     }
     return INT_BASE;
+}
+
+int main() {
+    Number num = get_int_base();
 }

@@ -1,5 +1,6 @@
-#include "vector.h"
+#include "vector_internal.h"
 #include "linear_form.h"
+#include "linear_form_internal.h"
 
 Linear_form_errors vector_add(Vector* vec1, Vector* vec2, Vector* result){
     if(!vec1 || !vec2 || !result) return OPERANDS_OR_RESULT_NOT_FOUND;

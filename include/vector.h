@@ -1,13 +1,9 @@
-#pragma ocne 
+#pragma once 
 
 #include "number.h"
 #include "linear_form.h"
 
-typedef struct {
-    void* data;
-    size_t dimension;
-    Number base;
-} Vector;
+typedef struct _Vector Vector;
 
 Linear_form_errors vector_add(Vector* vec1, Vector* vec2, Vector* result);
 Linear_form_errors vector_dot(Vector* vec1, Vector* vec2, Number* result);
