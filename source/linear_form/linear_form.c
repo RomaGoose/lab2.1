@@ -2,7 +2,7 @@
 
 #include "linear_form_internal.h"
 
-Linear_form* create_linear_form(Number base, Vector* coefficients, size_t dimension){
+Linear_form* create_linear_form(Vector* coefficients){
     Linear_form* l_form = malloc(sizeof(Linear_form));
     l_form->coeff_vector = coefficients;
 
@@ -13,11 +13,11 @@ Linear_form_errors linear_form_add(Linear_form* left, Linear_form* right, Linear
     vector_add(left->coeff_vector, right->coeff_vector, result->coeff_vector);
 }
 
-Linear_form_errors linear_form_scale(Linear_form* l_form, Number* scalar, Linear_form* result){
+Linear_form_errors linear_form_scale(Linear_form* l_form, Scalar* scalar, Linear_form* result){
     vector_scale(l_form->coeff_vector, scalar, result->coeff_vector);
 }
 
-Linear_form_errors linear_form_evaluate(Linear_form* l_form, Vector* arguments, Number* result){
+Linear_form_errors linear_form_evaluate(Linear_form* l_form, Vector* arguments, Scalar* result){
     vector_dot(l_form->coeff_vector, arguments, result);
 }
 

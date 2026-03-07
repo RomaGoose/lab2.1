@@ -1,39 +1,32 @@
 #include <stdio.h>
 
-#include "number.h"
-#include "integer_internal.h"
+#include "vector.h"
 
 
-static Number INT_BASE = {.vtable = NULL};
-
+static Vtable* INT_VTABLE = NULL;
 
 void int_add(void* left, void* right, void* result){
-    ((Int*)result)->value = ((Int*)left)->value + ((Int*)right)->value;
+    *((int*)result) = *((int*)left) + *((int*)right);
     return;
 }
 
 void int_multiply(void* left, void* right, void* result){    
-    ((Int*)result)->value = ((Int*)left)->value * ((Int*)right)->value;
+    *((int*)result) = *((int*)left) * *((int*)right);
     return;
 }
 
-void int_print(void* value) {
-    printf("%d", ((Int*)value)->value);
+void int_to_string(char* buff, size_t buff_size, void* value) {
+    snprintf(buff, buff_size, "%d", ((int*)value));
     return;
 }
 
-
-Number get_int_base() {
-    if (INT_BASE.vtable == NULL){
-        INT_BASE.vtable = malloc(sizeof(Vtable));
-        INT_BASE.vtable->add = int_add;
-        INT_BASE.vtable->mulitply = int_multiply;
-        INT_BASE.vtable->print = int_print;
-        INT_BASE.vtable->size = sizeof(Int);
+Vtable* get_int_base() {
+    if (INT_VTABLE == NULL){
+        INT_VTABLE = create_vtable();
+        vtable_set_add(INT_VTABLE, int_add);
+        vtable_set_multiply(INT_VTABLE, int_multiply);
+        vtable_set_to_sring(INT_VTABLE, int_to_string);
+        vtable_set_size(INT_VTABLE, sizeof(int));
     }
-    return INT_BASE;
-}
-
-int main() {
-    Number num = get_int_base();
+    return INT_VTABLE;
 }

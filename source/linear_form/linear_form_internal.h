@@ -1,3 +1,5 @@
+#pragma once
+
 #include "vector.h"
 
 typedef struct _Linear_form {

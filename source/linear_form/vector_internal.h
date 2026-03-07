@@ -1,7 +1,10 @@
+#pragma once
+
 #include "vector.h"
+#include "scalar.h"
 
 typedef struct _Vector {
     void* data;
-    Number base;
+    Vtable* base;
     size_t dimension;
 } Vector;

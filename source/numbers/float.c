@@ -1,34 +1,32 @@
 #include <stdio.h>
 
-#include "float_internal.h"
-#include "number.h"
+#include "vector.h"
 
-
-static Number FLOAT_BASE = {.vtable = NULL};
+static Vtable* FLOAT_VTABLE = NULL;
 
 
 void float_add(void* left, void* right, void* result){
-    ((Float*)result)->value = ((Float*)left)->value + ((Float*)right)->value;
+    *((float*)result) = *((float*)left) + *((float*)right);
     return;
 }
 
 void float_multiply(void* left, void* right, void* result){    
-    ((Float*)result)->value = ((Float*)left)->value * ((Float*)right)->value;
+    *((float*)result) = *((float*)left) * *((float*)right);
     return;
 }
 
-void float_print(void* value) {
-    printf("%f", ((Float*)value)->value);
+void float_to_string(char* buff, size_t buff_size, void* value) {
+    snprintf(buff, buff_size, "%f", ((float*)value));
     return;
 }
 
-Number get_float_base() {
-    if (FLOAT_BASE.vtable == NULL){
-        FLOAT_BASE.vtable = malloc(sizeof(Vtable));
-        FLOAT_BASE.vtable->add = float_add;
-        FLOAT_BASE.vtable->mulitply = float_multiply;
-        FLOAT_BASE.vtable->print = float_print;
-        FLOAT_BASE.vtable->size = sizeof(float);
+Vtable* get_float_base() {
+    if (FLOAT_VTABLE == NULL){
+        FLOAT_VTABLE = create_vtable();
+        vtable_set_add(FLOAT_VTABLE, float_add);
+        vtable_set_multiply(FLOAT_VTABLE, float_multiply);
+        vtable_set_to_sring(FLOAT_VTABLE, float_to_string);
+        vtable_set_size(FLOAT_VTABLE, sizeof(float));
     }
-    return FLOAT_BASE;
+    return FLOAT_VTABLE;
 }
