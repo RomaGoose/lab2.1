@@ -16,7 +16,7 @@ void float_multiply(void* left, void* right, void* result){
 }
 
 void float_to_string(char* buff, size_t buff_size, void* value) {
-    snprintf(buff, buff_size, "%f", ((float*)value));
+    snprintf(buff, buff_size, "%f", *((float*)value));
     return;
 }
 

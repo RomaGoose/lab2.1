@@ -35,7 +35,7 @@ Linear_form_errors vector_dot(Vector* vec1, Vector* vec2, Scalar* result){
 
 
     // Number base1 = vec1->base;
-    Vtable base = *(Vtable*)&vec1->base;
+    Vtable base = *(Vtable*)vec1->base;
 
     char* v1_data = (char*)vec1->data;
     char* v2_data = (char*)vec2->data;
@@ -47,9 +47,9 @@ Linear_form_errors vector_dot(Vector* vec1, Vector* vec2, Scalar* result){
                 sum
             );
         base.add(
-            result->data,
+            result->value,
             sum,
-            result->data
+            result->value
         );
     }
     return OK;
@@ -61,14 +61,14 @@ Linear_form_errors vector_scale(Vector* vec, Scalar* scalar, Vector* result){
     // if(vec->base.vtable != result->base.vtable || vec->base.vtable != scalar->vtable) return DIFFERENT_TYPES_OF_LFORM;
     // if(vec->dimension != result->dimension) return DIFFERENT_SIZES_OF_LFORM;
     
-    Vtable base = *(Vtable*)&vec->base;
+    Vtable base = *(Vtable*)vec->base;
 
     char* vec_data = (char*)vec->data;
     char* res_data = (char*)result->data;
     for(size_t i = 0; i < vec->dimension; ++i){
         base.mulitply(
             vec_data + i*base.size, 
-            scalar->data, 
+            scalar->value, 
             res_data + i*base.size
         );
     }

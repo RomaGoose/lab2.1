@@ -16,7 +16,7 @@ void int_multiply(void* left, void* right, void* result){
 }
 
 void int_to_string(char* buff, size_t buff_size, void* value) {
-    snprintf(buff, buff_size, "%d", ((int*)value));
+    snprintf(buff, buff_size, "%d", *((int*)value));
     return;
 }
 

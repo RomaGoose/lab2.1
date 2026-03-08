@@ -1,11 +1,9 @@
 #pragma once 
 
-#include <stdlib.h>
 #include "vector.h"
 
 typedef struct _Linear_form Linear_form;
 
-typedef enum _Linear_form_errors Linear_form_errors;
 
 Linear_form* create_linear_form(Vector* coefficients);
 Linear_form_errors linear_form_add(Linear_form* left, Linear_form* right, Linear_form* result);

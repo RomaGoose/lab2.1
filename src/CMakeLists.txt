@@ -4,7 +4,7 @@ add_library(numbers STATIC
 )
 
 target_include_directories(numbers PUBLIC
-    ${PROJECT_SOURCE_DIR}/inlcude
+    ${PROJECT_SOURCE_DIR}/include
 )
 
 target_include_directories(numbers PRIVATE
@@ -15,10 +15,11 @@ target_include_directories(numbers PRIVATE
 add_library(linear_form STATIC
     linear_form/linear_form.c    
     linear_form/vector.c    
+    linear_form/scalar.c
 )
 
 target_include_directories(linear_form PUBLIC
-    ${PROJECT_SOURCE_DIR}/inlcude
+    ${PROJECT_SOURCE_DIR}/include
 )
 
 target_include_directories(linear_form PRIVATE
