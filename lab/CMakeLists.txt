@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.10)
 set(CMAKE_C_STANDARD 11)
 project(lab2.1)
 
-# set(CMAKE_C_FLAGS_DEBUG "-g -O0")
-# set(CMAKE_C_FLAGS_RELEASE "-O2")
 
 add_subdirectory(src)
 
@@ -13,3 +11,6 @@ target_link_libraries(lab PRIVATE
     numbers
     linear_form
 )
+
+enable_testing()
+add_subdirectory(tests)

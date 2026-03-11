@@ -1,4 +1,4 @@
-.PHONY: debug release run-debug run-release clean-debug clean-release
+.PHONY: debug release run-debug run-release clean-debug clean-release debug-check
 
 MAKEFLAGS += --no-print-directory
 
@@ -18,6 +18,9 @@ GEN = Unix Makefiles
 DBG_CHECK = if [ ! -d $(DBG_DIR) ]; then cmake -G "$(GEN)" -DCMAKE_BUILD_TYPE=Debug -S . -B $(DBG_DIR); fi
 RLS_CHECK = if [ ! -d $(RLS_DIR) ]; then cmake -G "$(GEN)" -DCMAKE_BUILD_TYPE=Release -S . -B $(RLS_DIR); fi
 endif
+
+debug-check:
+	@$(DBG_CHECK)
 
 debug:
 	@$(DBG_CHECK)

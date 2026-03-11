@@ -1,0 +1,30 @@
+
+set(TEST_LIB_DIR "${PROJECT_SOURCE_DIR}/../test_lib/lib")
+find_library(TEST_LIB
+    NAMES test_lib  
+    PATHS ${TEST_LIB_DIR}
+    REQUIRED
+    NO_DEFAULT_PATH
+)
+find_path(TEST_INCLUDE_DIR
+    NAMES "_assert.g" "testing.h"
+    PATHS "${PROJECT_SOURCE_DIR}/../test_lib/include"
+    REQUIRED
+)
+
+add_executable(test_runner
+    # unit/test_vector
+    test_runner.c
+)
+
+target_link_libraries(test_runner PRIVATE
+    numbers
+    linear_form
+    ${TEST_LIB}
+    )
+
+target_include_directories(test_runner PRIVATE
+    ${TEST_INCLUDE_DIR}
+)
+
+add_test(NAME test_runner COMMAND test_runner)

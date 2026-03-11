@@ -1,0 +1,2 @@
+C:\msys64\ucrt64\bin\ar.exe qc C:\-=pokpok\labs\2sem\lab1\test_lib\lib\libtest_lib.a CMakeFiles/test_lib.dir/src/_assert.c.obj CMakeFiles/test_lib.dir/src/testing.c.obj
+C:\msys64\ucrt64\bin\ranlib.exe C:\-=pokpok\labs\2sem\lab1\test_lib\lib\libtest_lib.a
