@@ -101,19 +101,36 @@ CMakeFiles/test_lib.dir/src/testing.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_lib.dir/src/testing.c.s"
 	C:\msys64\ucrt64\bin\cc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\-=pokpok\labs\2sem\lab1\test_lib\src\testing.c -o CMakeFiles\test_lib.dir\src\testing.c.s
 
+CMakeFiles/test_lib.dir/src/mock_abort.c.obj: CMakeFiles/test_lib.dir/flags.make
+CMakeFiles/test_lib.dir/src/mock_abort.c.obj: CMakeFiles/test_lib.dir/includes_C.rsp
+CMakeFiles/test_lib.dir/src/mock_abort.c.obj: C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/src/mock_abort.c
+CMakeFiles/test_lib.dir/src/mock_abort.c.obj: CMakeFiles/test_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\-=pokpok\labs\2sem\lab1\test_lib\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/test_lib.dir/src/mock_abort.c.obj"
+	C:\msys64\ucrt64\bin\cc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_lib.dir/src/mock_abort.c.obj -MF CMakeFiles\test_lib.dir\src\mock_abort.c.obj.d -o CMakeFiles\test_lib.dir\src\mock_abort.c.obj -c C:\-=pokpok\labs\2sem\lab1\test_lib\src\mock_abort.c
+
+CMakeFiles/test_lib.dir/src/mock_abort.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_lib.dir/src/mock_abort.c.i"
+	C:\msys64\ucrt64\bin\cc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\-=pokpok\labs\2sem\lab1\test_lib\src\mock_abort.c > CMakeFiles\test_lib.dir\src\mock_abort.c.i
+
+CMakeFiles/test_lib.dir/src/mock_abort.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_lib.dir/src/mock_abort.c.s"
+	C:\msys64\ucrt64\bin\cc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\-=pokpok\labs\2sem\lab1\test_lib\src\mock_abort.c -o CMakeFiles\test_lib.dir\src\mock_abort.c.s
+
 # Object files for target test_lib
 test_lib_OBJECTS = \
 "CMakeFiles/test_lib.dir/src/_assert.c.obj" \
-"CMakeFiles/test_lib.dir/src/testing.c.obj"
+"CMakeFiles/test_lib.dir/src/testing.c.obj" \
+"CMakeFiles/test_lib.dir/src/mock_abort.c.obj"
 
 # External object files for target test_lib
 test_lib_EXTERNAL_OBJECTS =
 
 C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/lib/libtest_lib.a: CMakeFiles/test_lib.dir/src/_assert.c.obj
 C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/lib/libtest_lib.a: CMakeFiles/test_lib.dir/src/testing.c.obj
+C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/lib/libtest_lib.a: CMakeFiles/test_lib.dir/src/mock_abort.c.obj
 C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/lib/libtest_lib.a: CMakeFiles/test_lib.dir/build.make
 C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/lib/libtest_lib.a: CMakeFiles/test_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\-=pokpok\labs\2sem\lab1\test_lib\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C static library C:\-=pokpok\labs\2sem\lab1\test_lib\lib\libtest_lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\-=pokpok\labs\2sem\lab1\test_lib\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C static library C:\-=pokpok\labs\2sem\lab1\test_lib\lib\libtest_lib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles\test_lib.dir\cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\test_lib.dir\link.txt --verbose=$(VERBOSE)
 

@@ -26,3 +26,15 @@ target_include_directories(linear_form PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/linear_form
 )
 
+add_library(result STATIC
+    result/result.c    
+)
+
+target_include_directories(linear_form PUBLIC
+    ${PROJECT_SOURCE_DIR}/include
+)
+
+target_include_directories(linear_form PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/result
+)
+

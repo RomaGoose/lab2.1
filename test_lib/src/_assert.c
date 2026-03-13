@@ -1,16 +1,17 @@
 #include "_assert.h"
+#include "mock_abort.h"
 
 static size_t succes_count = 0;
 static size_t fail_count = 0;
 
 
-static int assert_fail(const char* expr, const char* file, size_t line) {
+int assert_fail(const char* expr, const char* file, size_t line) {
     fprintf(stderr, "%s:%llu:\t %s FAILED \n", file, line, expr);
     ++fail_count;
     return 0;
 }
-static int assert_success(const char* expr, const char* file, size_t line) {
-    fprintf(stderr, "%s:%llu:\t %s SUCCEED \n", file, line, expr);
+int assert_success(const char* expr, const char* file, size_t line) {
+    fprintf(stderr, "%s:%llu:\t %s PASSED \n", file, line, expr);
     ++succes_count;
     return 0;
 }

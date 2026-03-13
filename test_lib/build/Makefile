@@ -152,6 +152,30 @@ src/_assert.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_lib.dir\build.make CMakeFiles/test_lib.dir/src/_assert.c.s
 .PHONY : src/_assert.c.s
 
+src/mock_abort.obj: src/mock_abort.c.obj
+.PHONY : src/mock_abort.obj
+
+# target to build an object file
+src/mock_abort.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_lib.dir\build.make CMakeFiles/test_lib.dir/src/mock_abort.c.obj
+.PHONY : src/mock_abort.c.obj
+
+src/mock_abort.i: src/mock_abort.c.i
+.PHONY : src/mock_abort.i
+
+# target to preprocess a source file
+src/mock_abort.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_lib.dir\build.make CMakeFiles/test_lib.dir/src/mock_abort.c.i
+.PHONY : src/mock_abort.c.i
+
+src/mock_abort.s: src/mock_abort.c.s
+.PHONY : src/mock_abort.s
+
+# target to generate assembly for a file
+src/mock_abort.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_lib.dir\build.make CMakeFiles/test_lib.dir/src/mock_abort.c.s
+.PHONY : src/mock_abort.c.s
+
 src/testing.obj: src/testing.c.obj
 .PHONY : src/testing.obj
 
@@ -188,6 +212,9 @@ help:
 	@echo ... src/_assert.obj
 	@echo ... src/_assert.i
 	@echo ... src/_assert.s
+	@echo ... src/mock_abort.obj
+	@echo ... src/mock_abort.i
+	@echo ... src/mock_abort.s
 	@echo ... src/testing.obj
 	@echo ... src/testing.i
 	@echo ... src/testing.s

@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "C:/-=pokpok/labs/2sem/lab1/test_lib/lib/libtest_lib.pdb"
   "CMakeFiles/test_lib.dir/src/_assert.c.obj"
   "CMakeFiles/test_lib.dir/src/_assert.c.obj.d"
+  "CMakeFiles/test_lib.dir/src/mock_abort.c.obj"
+  "CMakeFiles/test_lib.dir/src/mock_abort.c.obj.d"
   "CMakeFiles/test_lib.dir/src/testing.c.obj"
   "CMakeFiles/test_lib.dir/src/testing.c.obj.d"
 )

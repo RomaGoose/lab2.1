@@ -2,7 +2,6 @@
 
 #include "_assert.h"
 
-
 #define TEST(test_name)	\
     static void test_name##_test();	\
     static void __attribute__((constructor))    \

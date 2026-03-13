@@ -1,0 +1,1 @@
+int abort_check();

@@ -14,6 +14,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${LIB})
 add_library(test_lib STATIC
     ${SRC}/_assert.c
     ${SRC}/testing.c
+    ${SRC}/mock_abort.c
 )
 
 target_include_directories(test_lib PUBLIC
