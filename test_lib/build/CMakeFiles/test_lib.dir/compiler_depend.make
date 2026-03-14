@@ -3,6 +3,7 @@
 
 CMakeFiles/test_lib.dir/src/_assert.c.obj: C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/src/_assert.c \
   C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/include/_assert.h \
+  C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/include/mock_abort.h \
   C:/msys64/ucrt64/include/_mingw.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
@@ -24,6 +25,8 @@ CMakeFiles/test_lib.dir/src/_assert.c.obj: C:/-$(EQUALS)pokpok/labs/2sem/lab1/te
   C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/limits.h \
   C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/mm_malloc.h \
   C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/syslimits.h
+
+CMakeFiles/test_lib.dir/src/mock_abort.c.obj: C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/src/mock_abort.c
 
 CMakeFiles/test_lib.dir/src/testing.c.obj: C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/src/testing.c \
   C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/include/_assert.h \
@@ -56,6 +59,8 @@ C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/src/_assert.c:
 C:/msys64/ucrt64/include/malloc.h:
 
 C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/include/_assert.h:
+
+C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/include/mock_abort.h:
 
 C:/msys64/ucrt64/include/sdks/_mingw_ddk.h:
 
@@ -96,6 +101,8 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/limits.h:
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/mm_malloc.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/syslimits.h:
+
+C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/src/mock_abort.c:
 
 C:/-$(EQUALS)pokpok/labs/2sem/lab1/test_lib/src/testing.c:
 

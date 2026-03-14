@@ -2,28 +2,35 @@
 
 #include <stdlib.h>
 
+#include "result.h"
+
 typedef struct _Vtable Vtable;
 typedef struct _Scalar Scalar;
 typedef struct _Vector Vector;
 
-typedef enum {
-    OK,
-    OPERANDS_OR_RESULT_NOT_FOUND,
-    DIFFERENT_TYPES_OF_LFORM,
-    OPERATION_NOT_DEFINED,
-    DIFFERENT_SIZES_OF_LFORM
-}Linear_form_errors;
-
 
 Vtable* create_vtable();
 Scalar* create_scalar(Vtable* vtable, void* value);
+Scalar* create_null_scalar(Vtable* vtable);
+void free_scalar(Scalar* scalar); 
+
 void vtable_set_add(Vtable* vt, void (*add)(void* left, void* right, void* result));
 void vtable_set_multiply(Vtable* vt, void (*multiply)(void* left, void* right, void* result));
-void vtable_set_to_sring(Vtable* vt, void (*to_string)(char* buff, size_t buff_size,void* value));
+void vtable_set_to_sring(Vtable* vt, size_t (*to_string)(char* buff, size_t buff_size,void* value));
 void vtable_set_size(Vtable* vt, size_t size);
 
-Linear_form_errors vector_add(Vector* vec1, Vector* vec2, Vector* result);
-Linear_form_errors vector_dot(Vector* vec1, Vector* vec2, Scalar* result);
-Linear_form_errors vector_scale(Vector* vec, Scalar* scalar, Vector* result);
+Result* vector_get_elem(Vector* vec, size_t index);
+Result* vector_set_elem(Vector* vec, size_t index,Scalar* elem);
+int vector_eq(Vector* vec1, Vector* vec2);
+Result* vector_copy_from(Vector* vec);
+Result* vector_copy_to(Vector* vec, Vtable* base, void* data, size_t dimension);
+
+Result* vector_add(Vector* vec1, Vector* vec2);
+Result* vector_dot(Vector* vec1, Vector* vec2);
+Result* vector_scale(Vector* vec, Scalar* scalar);
+
+Result* vector_to_string(Vector* vec);
+
 Vector* create_vector(Vtable* base, void* data, size_t dimension);
+Vector* create_empty_vector(Vtable* base, size_t dimension);
 void free_vector(Vector* vec);

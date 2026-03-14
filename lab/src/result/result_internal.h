@@ -1,3 +1,7 @@
+#pragma once
+
+#include "result.h"
+
 typedef enum {
     OK, 
     ERROR
@@ -7,6 +11,6 @@ typedef struct _Result{
     res_type type;
     union {
         void* value;
-        char* err_msg;
+        Error_code err_code;
     }data;
 } Result;

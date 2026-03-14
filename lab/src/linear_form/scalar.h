@@ -8,7 +8,7 @@ typedef struct _Vtable {
     size_t size;
     binary_operation add;
     binary_operation mulitply;
-    void (*to_string)(char* buff, size_t buff_size, void* value);
+    size_t (*to_string)(char* buff, size_t buff_size, void* value);
 } Vtable;
 
 typedef struct _Scalar {

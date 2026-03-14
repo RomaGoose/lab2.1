@@ -1,4 +1,6 @@
 *.exe
-.gitignore
+.vscode
+test_lib/build
+../test_lib/lib
 build_debug
 build_release

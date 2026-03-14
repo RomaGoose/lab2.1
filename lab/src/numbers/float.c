@@ -2,7 +2,7 @@
 
 #include "vector.h"
 
-static Vtable* FLOAT_VTABLE = NULL;
+static Vtable* float_vtable = NULL;
 
 
 void float_add(void* left, void* right, void* result){
@@ -15,18 +15,17 @@ void float_multiply(void* left, void* right, void* result){
     return;
 }
 
-void float_to_string(char* buff, size_t buff_size, void* value) {
-    snprintf(buff, buff_size, "%f", *((float*)value));
-    return;
+size_t float_to_string(char* buff, size_t buff_size, void* value) {
+    return snprintf(buff, buff_size, "%f", *((float*)value));
 }
 
 Vtable* get_float_base() {
-    if (FLOAT_VTABLE == NULL){
-        FLOAT_VTABLE = create_vtable();
-        vtable_set_add(FLOAT_VTABLE, float_add);
-        vtable_set_multiply(FLOAT_VTABLE, float_multiply);
-        vtable_set_to_sring(FLOAT_VTABLE, float_to_string);
-        vtable_set_size(FLOAT_VTABLE, sizeof(float));
+    if (float_vtable == NULL){
+        float_vtable = create_vtable();
+        vtable_set_add(float_vtable, float_add);
+        vtable_set_multiply(float_vtable, float_multiply);
+        vtable_set_to_sring(float_vtable, float_to_string);
+        vtable_set_size(float_vtable, sizeof(float));
     }
-    return FLOAT_VTABLE;
+    return float_vtable;
 }

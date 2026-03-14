@@ -3,7 +3,7 @@
 #include "vector.h"
 
 
-static Vtable* INT_VTABLE = NULL;
+static Vtable* int_vtable = NULL;
 
 void int_add(void* left, void* right, void* result){
     *((int*)result) = *((int*)left) + *((int*)right);
@@ -15,18 +15,17 @@ void int_multiply(void* left, void* right, void* result){
     return;
 }
 
-void int_to_string(char* buff, size_t buff_size, void* value) {
-    snprintf(buff, buff_size, "%d", *((int*)value));
-    return;
+size_t int_to_string(char* buff, size_t buff_size, void* value) {
+    return snprintf(buff, buff_size, "%d", *((int*)value));
 }
 
 Vtable* get_int_base() {
-    if (INT_VTABLE == NULL){
-        INT_VTABLE = create_vtable();
-        vtable_set_add(INT_VTABLE, int_add);
-        vtable_set_multiply(INT_VTABLE, int_multiply);
-        vtable_set_to_sring(INT_VTABLE, int_to_string);
-        vtable_set_size(INT_VTABLE, sizeof(int));
+    if (int_vtable == NULL){
+        int_vtable = create_vtable();
+        vtable_set_add(int_vtable, int_add);
+        vtable_set_multiply(int_vtable, int_multiply);
+        vtable_set_to_sring(int_vtable, int_to_string);
+        vtable_set_size(int_vtable, sizeof(int));
     }
-    return INT_VTABLE;
+    return int_vtable;
 }

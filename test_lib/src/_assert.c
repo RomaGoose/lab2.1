@@ -21,9 +21,9 @@ int get_fail_count(){
 }
 
 int print_stats(){
-    if(fail_count != 0)
+    if(succes_count + fail_count > 0)
         fprintf(stderr, "%llu tests out of %llu succeeded. %f\%  SUCCEED \n", 
-            succes_count, succes_count+fail_count, succes_count/(succes_count+fail_count)*100.0);
+            succes_count, succes_count + fail_count, succes_count/(succes_count + fail_count)*100.0);
     else
         fputs("No tests were ran", stderr);
         return 0;

@@ -3,10 +3,10 @@
 #include "result_internal.h"
 
 
-Result* err(char* err_msg){
+Result* err(Error_code err_code){
     Result* error = malloc(sizeof(Result));
     error->type = ERROR;
-    error->data.err_msg = err_msg;
+    error->data.err_code = err_code;
     return error;
 }
 Result* ok(void* value){
@@ -15,8 +15,11 @@ Result* ok(void* value){
     res->data.value = value;
     return res;
 }
-
 void* unwrap(Result* res){
     if (res->type == ERROR) abort();
     return res->data.value;
+}
+Error_code get_err(Result* res){
+    if (res->type == OK) abort();
+    return res->data.err_code;
 }

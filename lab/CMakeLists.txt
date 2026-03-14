@@ -10,6 +10,7 @@ add_executable(lab main.c)
 target_link_libraries(lab PRIVATE
     numbers
     linear_form
+    result
 )
 
 enable_testing()

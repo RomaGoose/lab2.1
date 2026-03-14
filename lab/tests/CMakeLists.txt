@@ -13,7 +13,7 @@ find_path(TEST_INCLUDE_DIR
 )
 
 add_executable(test_runner
-    # unit/test_vector
+    unit/test_vector
     unit/test_result.c
     test_runner.c
 )

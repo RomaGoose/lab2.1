@@ -30,11 +30,11 @@ add_library(result STATIC
     result/result.c    
 )
 
-target_include_directories(linear_form PUBLIC
+target_include_directories(result PUBLIC
     ${PROJECT_SOURCE_DIR}/include
 )
 
-target_include_directories(linear_form PRIVATE
+target_include_directories(result PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/result
 )
 
