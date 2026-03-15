@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define NORMAL  "\033[0m"
+#define RED     "\033[0;31m"
+#define GREEN   "\033[0;32m"
+
 void print_stats();
 int get_fail_count();
 

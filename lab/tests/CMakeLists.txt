@@ -15,6 +15,7 @@ find_path(TEST_INCLUDE_DIR
 add_executable(test_runner
     unit/test_vector
     unit/test_result.c
+    unit/test_linear_form.c
     test_runner.c
 )
 

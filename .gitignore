@@ -2,7 +2,5 @@
 .vscode
 test_lib/build
 test_lib/lib
-lib
-build_debug
-build_release
+lab/build_debug
 Makefile

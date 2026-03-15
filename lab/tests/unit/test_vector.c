@@ -144,7 +144,7 @@ TEST(vector_to_string_ok){
     Vector* vec = unwrap(create_vector(get_int_base(), arr, 5));
     char* res = (char*)unwrap(vector_to_string(vec));
 
-    assert_eq(strcmp(res, "Vector: (1, 2, 3, 4, 5)"), 0);
+    assert_eq(strcmp(res, "Vector = {1, 2, 3, 4, 5}"), 0);
 
     free_vector(vec);
     free(res);
@@ -178,4 +178,25 @@ TEST(vector_equal){
     free_vector(vec3);
     free_vector(vec4);
     free_vector(vec5);
+}
+
+TEST(create_vector_){
+
+    int data[] = {1,2,3};
+
+    Result* vec1 = create_vector(NULL, data, 3);
+    Result* vec2 = create_vector(get_int_base(), NULL, 3);
+    Vector* vec3 = unwrap(create_vector(get_int_base(), data, 3));
+
+    assert_eq(unwrap_err(vec1), NULL_POINTER);
+    assert_eq(unwrap_err(vec2), NULL_POINTER);
+
+    int res[] = {
+        *(int*)unwrap(vector_get_elem(vec3, 0)),
+        *(int*)unwrap(vector_get_elem(vec3, 1)),
+        *(int*)unwrap(vector_get_elem(vec3, 2))
+    };
+    assert_eq(strncmp((char*)data, (char*)res, 3*sizeof(int)), 0);
+
+    free_vector(vec3);
 }

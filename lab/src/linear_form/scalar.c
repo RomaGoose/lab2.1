@@ -29,7 +29,6 @@ Result* create_null_scalar(Vtable* vtable){
 
     return ok(new_scalar);
 }
-
 void free_scalar(Scalar* scalar){
     free(scalar->value);
     free(scalar);

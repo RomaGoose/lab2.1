@@ -27,3 +27,6 @@ Error_code unwrap_err(Result* res){
     free(res); 
     return ec;
 }
+res_type get_res_type(Result* res){
+    return res->type;
+}

@@ -20,7 +20,7 @@ void vtable_set_to_sring(Vtable* vt, size_t (*to_string)(char* buff, size_t buff
 void vtable_set_size(Vtable* vt, size_t size);
 
 Result* vector_get_elem(Vector* vec, size_t index);
-Result* vector_set_elem(Vector* vec, size_t index,Scalar* elem);
+Result* vector_set_elem(Vector* vec, size_t index, Scalar* elem);
 Result* vector_eq(Vector* vec1, Vector* vec2);
 // Result* vector_copy_from(Vector* vec);
 // Result* vector_copy_to(Vector* vec, Vtable* base, void* data, size_t dimension);

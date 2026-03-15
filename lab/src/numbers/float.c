@@ -16,7 +16,7 @@ void float_multiply(void* left, void* right, void* result){
 }
 
 size_t float_to_string(char* buff, size_t buff_size, void* value) {
-    return snprintf(buff, buff_size, "%f", *((float*)value));
+    return snprintf(buff, buff_size, "%.2f", *((float*)value));
 }
 
 Vtable* get_float_base() {

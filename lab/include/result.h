@@ -6,6 +6,10 @@
         if(!ptrs[i]) return err(NULL_POINTER);\
 } while(0);
 
+typedef enum {
+    OK, 
+    ERROR
+} res_type;
 
 typedef enum {
     NULL_POINTER,
@@ -22,3 +26,5 @@ Result* ok(void* value);
 
 void* unwrap(Result* res);
 Error_code unwrap_err(Result* res);
+
+res_type get_res_type(Result* res);

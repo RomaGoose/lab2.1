@@ -96,37 +96,40 @@ Result* vector_scale(Vector* vec, Scalar* scalar){
     }
     return ok(result);
 }
-
-Result* vector_to_string(Vector* vec){
-    null_check(vec); 
-
-    size_t elements_string_size = 0;
+char** scalars_to_string(Vector* vec, size_t* return_buff_size){
     size_t element_size = 0;
 
     char** buffers = calloc(vec->dimension, sizeof(char*));
     for(size_t i = 0; i < vec->dimension; ++i){
-        element_size = vec->base->to_string(NULL, 0, unwrap(vector_get_elem(vec,  i))) + 1;
-        buffers[i]=calloc(element_size, sizeof(char));
-        vec->base->to_string(buffers[i], element_size, unwrap(vector_get_elem(vec, i)));
-        elements_string_size += element_size - 1;
+        element_size = vec->base->to_string(NULL, 0, unwrap(vector_get_elem(vec,  i)));
+        buffers[i]=calloc(element_size + 1, sizeof(char));
+        vec->base->to_string(buffers[i], element_size + 1, unwrap(vector_get_elem(vec, i)));
+        *return_buff_size += element_size;
     }
+    return buffers;
+}
+Result* vector_to_string(Vector* vec){
+    null_check(vec); 
 
-    size_t buff_size = strlen(VECTOR_STR_START VECTOR_STR_END) + 
-                       strlen(VECTOR_STR_SEP) * (vec->dimension - 1) + 
-                       elements_string_size + 1;
-    char* buff = calloc(buff_size, 1);
+    size_t elem_buffers_size = 0;
+    char** elem_buffers = scalars_to_string(vec, &elem_buffers_size);
+
+    size_t buff_size = VECTOR_STR_START_LEN + VECTOR_STR_END_LEN + 
+                       VECTOR_STR_SEP_LEN * (vec->dimension - 1) + 
+                       elem_buffers_size + 1;
+    char* vector_buff = calloc(buff_size, sizeof(char));
     
-    strcat(buff, VECTOR_STR_START);
+    strcat(vector_buff, VECTOR_STR_START);
     for(size_t i = 0; i < vec->dimension - 1; ++i){
-        strcat(buff, buffers[i]);
-        strcat(buff, VECTOR_STR_SEP);
-        free(buffers[i]);
+        strcat(vector_buff, elem_buffers[i]);
+        strcat(vector_buff, VECTOR_STR_SEP);
+        free(elem_buffers[i]);
     }
-    strcat(buff, buffers[vec->dimension-1]);
-    strcat(buff, VECTOR_STR_END);
-    free(buffers);
+    strcat(vector_buff, elem_buffers[vec->dimension-1]);
+    strcat(vector_buff, VECTOR_STR_END);
+    free(elem_buffers);
 
-    return ok(buff);
+    return ok(vector_buff);
 }
 
 Result* create_vector(Vtable* base, void* data, size_t dimension){
@@ -177,6 +180,7 @@ Result* create_empty_vector(Vtable* base, size_t dimension){
 }
 
 void free_vector(Vector* vec){
+    if (!vec) return;
     free(vec->data);
     free(vec);
 }
