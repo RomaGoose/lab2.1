@@ -1,3 +1,0 @@
-C:/-=pokpok/labs/2sem/lab1/test_lib/build/CMakeFiles/test_lib.dir
-C:/-=pokpok/labs/2sem/lab1/test_lib/build/CMakeFiles/edit_cache.dir
-C:/-=pokpok/labs/2sem/lab1/test_lib/build/CMakeFiles/rebuild_cache.dir

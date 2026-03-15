@@ -1,8 +1,8 @@
 #include "_assert.h"
 #include "mock_abort.h"
 
-static size_t succes_count = 0;
-static size_t fail_count = 0;
+static int succes_count = 0;
+static int fail_count = 0;
 
 
 int assert_fail(const char* expr, const char* file, size_t line) {
@@ -20,11 +20,10 @@ int get_fail_count(){
     return fail_count;
 }
 
-int print_stats(){
+void print_stats(){
     if(succes_count + fail_count > 0)
-        fprintf(stderr, "%llu tests out of %llu succeeded. %f\%  SUCCEED \n", 
+        fprintf(stderr, "%d tests out of %d succeeded. %f%%  SUCCEED \n", 
             succes_count, succes_count + fail_count, succes_count/(succes_count + fail_count)*100.0);
     else
         fputs("No tests were ran", stderr);
-        return 0;
 }

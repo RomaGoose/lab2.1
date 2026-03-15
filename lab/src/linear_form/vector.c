@@ -8,13 +8,14 @@
 #include "result.h"
 
 Result* vector_get_elem(Vector* vec, size_t index){
-    if (vec == NULL) return err(NULL_POINTER);
+    null_check(vec);
     if (index >= vec->dimension || index < 0) return err(INDEX_OUT_OF_RANGE);
 
     return ok((char*)vec->data + index*vec->base->size);
 };
+
 Result* vector_set_elem(Vector* vec, size_t index, Scalar* elem){
-    if (vec == NULL || elem == NULL) return err(NULL_POINTER);
+    null_check(vec, elem);
     if (index >= vec->dimension || index < 0) return err(INDEX_OUT_OF_RANGE);
     if (vec->base != elem->vtable) return err(INCOMPATABLE_TYPES);
 
@@ -25,13 +26,13 @@ Result* vector_set_elem(Vector* vec, size_t index, Scalar* elem){
 // Result* vector_copy_from(Vector* vec);
 // Result* vector_copy_to(Vector* vec, Vtable* base, void* data, size_t dimension);
 
-Result* vector_add(Vector* vec1, Vector* vec2){    
-    if(!vec1 || !vec2) return err(NULL_POINTER);
+Result* vector_add(Vector* vec1, Vector* vec2){   
+    null_check(vec1, vec2); 
     if(!vec1->base->add) return err(OPERATION_NOT_DEFINED);
     if(vec1->base != vec2->base) return err(INCOMPATABLE_TYPES);
     if(vec1->dimension != vec2->dimension) return err(INCOMPATABLE_SIZES);
     
-    Vector* result = create_empty_vector(vec1->base, vec1->dimension);
+    Vector* result = unwrap(create_empty_vector(vec1->base, vec1->dimension));
 
     Vtable base = *(Vtable*)vec1->base;
 
@@ -48,12 +49,12 @@ Result* vector_add(Vector* vec1, Vector* vec2){
     return ok(result);
 }
 Result* vector_dot(Vector* vec1, Vector* vec2){
-    if(!vec1 || !vec2) return err(NULL_POINTER);
+    null_check(vec1, vec2); 
     if(!vec1->base->add) return err(OPERATION_NOT_DEFINED);
     if(vec1->base != vec2->base) return err(INCOMPATABLE_TYPES);
     if(vec1->dimension != vec2->dimension) return err(INCOMPATABLE_SIZES);
     
-    Scalar* result = create_null_scalar(vec1->base);
+    Scalar* result = unwrap(create_null_scalar(vec1->base));
 
     Vtable base = *(Vtable*)vec1->base;
 
@@ -76,11 +77,11 @@ Result* vector_dot(Vector* vec1, Vector* vec2){
 }
 
 Result* vector_scale(Vector* vec, Scalar* scalar){
-    if(!vec || !scalar) return err(NULL_POINTER);
+    null_check(vec, scalar); 
     if(!vec->base->add) return err(OPERATION_NOT_DEFINED);
     if(vec->base != scalar->vtable) return err(INCOMPATABLE_TYPES);
 
-    Vector* result = create_empty_vector(vec->base, vec->dimension);
+    Vector* result = unwrap(create_empty_vector(vec->base, vec->dimension));
     
     Vtable base = *(Vtable*)vec->base;
 
@@ -97,7 +98,8 @@ Result* vector_scale(Vector* vec, Scalar* scalar){
 }
 
 Result* vector_to_string(Vector* vec){
-    if (!vec || !vec->base || !vec->data) return err(NULL_POINTER);
+    null_check(vec); 
+
     size_t elements_string_size = 0;
     size_t element_size = 0;
 
@@ -110,7 +112,7 @@ Result* vector_to_string(Vector* vec){
     }
 
     size_t buff_size = strlen(VECTOR_STR_START VECTOR_STR_END) + 
-                       strlen(", ") * (vec->dimension - 1) + 
+                       strlen(VECTOR_STR_SEP) * (vec->dimension - 1) + 
                        elements_string_size + 1;
     char* buff = calloc(buff_size, 1);
     
@@ -127,7 +129,8 @@ Result* vector_to_string(Vector* vec){
     return ok(buff);
 }
 
-Vector* create_vector(Vtable* base, void* data, size_t dimension){
+Result* create_vector(Vtable* base, void* data, size_t dimension){
+    null_check(base, data);
     Vector* new_vec = malloc(sizeof(Vector));
 
     new_vec->base = base;
@@ -137,23 +140,32 @@ Vector* create_vector(Vtable* base, void* data, size_t dimension){
     new_vec->data = malloc(vec_size);
     memcpy(new_vec->data, data, vec_size);
 
-    return new_vec;
+    return ok(new_vec);
 }
 
-int vector_eq(Vector* vec1, Vector* vec2){
-    if(vec1->base!=vec2->base || vec1->dimension != vec2->dimension) return 0;
+Result* vector_eq(Vector* vec1, Vector* vec2){
+    null_check(vec1,vec2);
+
+    if(vec1->base!=vec2->base) return err(INCOMPATABLE_TYPES);
+    if(vec1->dimension != vec2->dimension) return err(INCOMPATABLE_SIZES);
+
+
+    int* is_equal = malloc(sizeof(int));
+    *is_equal = 0; 
 
     char* data1 = vec1->data;
     char* data2 = vec2->data;
     size_t size = vec1->base->size;
     for (size_t i = 0; i < vec1->dimension; ++i){
         if(strncmp(data1 + i*size, data2 + i*size, size) != 0) 
-            return 0;
+            return ok(is_equal);
     }
-    return 1;
+    *is_equal = 1; 
+    return ok(is_equal);
 }
 
-Vector* create_empty_vector(Vtable* base, size_t dimension){
+Result* create_empty_vector(Vtable* base, size_t dimension){
+    null_check(base);
     Vector* new_vec = malloc(sizeof(Vector));
 
     new_vec->base = base;
@@ -161,7 +173,7 @@ Vector* create_empty_vector(Vtable* base, size_t dimension){
 
     new_vec->data = calloc(dimension, base->size);
 
-    return new_vec;
+    return ok(new_vec);
 }
 
 void free_vector(Vector* vec){

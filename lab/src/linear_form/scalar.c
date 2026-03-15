@@ -1,26 +1,33 @@
-#include "scalar.h"
 #include <string.h>
+
+#include "scalar.h"
+#include "result.h"
+
 
 Vtable* create_vtable(){
     Vtable* new = malloc(sizeof(Vtable));
     return new;
 }
 
-Scalar* create_scalar(Vtable* vtable, void* value){
+Result* create_scalar(Vtable* vtable, void* value){
+    null_check(vtable, value);
+
     Scalar* new_scalar = malloc(sizeof(Scalar));
     new_scalar->vtable = vtable;
     new_scalar->value = malloc(vtable->size);
 
     memcpy(new_scalar->value, value, vtable->size);
 
-    return new_scalar;
+    return ok(new_scalar);
 }
-Scalar* create_null_scalar(Vtable* vtable){
+Result* create_null_scalar(Vtable* vtable){
+    null_check(vtable);
+
     Scalar* new_scalar = malloc(sizeof(Scalar));
     new_scalar->vtable = vtable;
     new_scalar->value = calloc(1, vtable->size);
 
-    return new_scalar;
+    return ok(new_scalar);
 }
 
 void free_scalar(Scalar* scalar){

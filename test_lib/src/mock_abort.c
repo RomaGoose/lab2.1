@@ -1,6 +1,9 @@
+#include <stdio.h>
+
 
 static int abort_called = 0;
 static int old_abort_called = 0;
+static int is_expected = 0;
 
 int abort_check(){
     if (abort_called != old_abort_called) {
@@ -11,6 +14,19 @@ int abort_check(){
     return 0;
 }
 
+void listen(){
+    is_expected = 1;
+}
+
+void __real_abort();
+
 void __wrap_abort(){
-    abort_called++;
+    if (is_expected){
+        abort_called++;
+        is_expected = 0;
+    }
+    else {
+        fprintf(stderr, "ABORT called");
+        __real_abort();
+    }
 }

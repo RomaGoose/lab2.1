@@ -1,7 +1,6 @@
 #include <stdlib.h>
 
 #include "testing.h"
-#include "_assert.h"
 
 static Test* first_test_ptr = NULL;
 

@@ -17,9 +17,13 @@ Result* ok(void* value){
 }
 void* unwrap(Result* res){
     if (res->type == ERROR) abort();
-    return res->data.value;
+    void* v = res->data.value;
+    free(res);
+    return v;
 }
-Error_code get_err(Result* res){
+Error_code unwrap_err(Result* res){
     if (res->type == OK) abort();
-    return res->data.err_code;
+    Error_code ec = res->data.err_code;
+    free(res); 
+    return ec;
 }

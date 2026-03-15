@@ -1,5 +1,12 @@
 #pragma once
 
+#define null_check(...) do {\
+    void* ptrs[] = {__VA_ARGS__, (void*)1};\
+    for (int i = 0; ptrs[i] != (void*)1; ++i)\
+        if(!ptrs[i]) return err(NULL_POINTER);\
+} while(0);
+
+
 typedef enum {
     NULL_POINTER,
     INCOMPATABLE_TYPES,
@@ -14,4 +21,4 @@ Result* err(Error_code err_code);
 Result* ok(void* value);
 
 void* unwrap(Result* res);
-Error_code get_err(Result* res);
+Error_code unwrap_err(Result* res);

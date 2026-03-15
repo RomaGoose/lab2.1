@@ -26,30 +26,28 @@ TEST(result_ok){
 
     free(ok_res);
 }
-TEST(result_unwrap_ok){
+TEST(result_unwrap){
     int v = 123;
 
     Result* ok_res = ok(&v);
 
     assert_eq(unwrap(ok_res), &v);
-
-    free(ok_res);
 }
 TEST(result_unwrap_abort){
     
     Result* err_res = err(NULL_POINTER);
 
-    expect_abort();
-
-    free(err_res);
+    expect_abort(unwrap(err_res));
 }
-TEST(result_get_err_abort){
+TEST(result_unwrap_err){
+    
+    Result* err_res = err(NULL_POINTER);
+
+    assert_eq(unwrap_err(err_res), NULL_POINTER);
+}
+TEST(result_unwrap_err_abort){
     
     Result* ok_res = ok(NULL);
 
-    get_err(ok_res);
-
-    expect_abort();
-
-    free(ok_res);
+    expect_abort(unwrap_err(ok_res));
 }
