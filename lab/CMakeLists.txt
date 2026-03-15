@@ -8,6 +8,7 @@ add_subdirectory(src)
 add_executable(lab main.c)
 
 target_link_libraries(lab PRIVATE
+    inout
     numbers
     linear_form
     result

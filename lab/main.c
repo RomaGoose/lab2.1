@@ -1,11 +1,9 @@
-#include "vector.h"
-#include "linear_form.h"
-#include "integer.h"
-#include "_float.h"
+#include "inout.h"
 
 #include <stdio.h>
 
 int main (){
+    process_input();
 
     return 0;
 }

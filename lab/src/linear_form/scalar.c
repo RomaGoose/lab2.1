@@ -46,4 +46,7 @@ void vtable_set_to_sring(Vtable* vt, size_t (*to_string)(char* buff, size_t buff
 void vtable_set_size(Vtable* vt, size_t size){
     vt->size = size;
 }
+size_t vtable_get_size(Vtable* vt){
+    return vt->size;
+}
 

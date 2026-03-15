@@ -18,6 +18,7 @@ void vtable_set_add(Vtable* vt, void (*add)(void* left, void* right, void* resul
 void vtable_set_multiply(Vtable* vt, void (*multiply)(void* left, void* right, void* result));
 void vtable_set_to_sring(Vtable* vt, size_t (*to_string)(char* buff, size_t buff_size,void* value));
 void vtable_set_size(Vtable* vt, size_t size);
+size_t vtable_get_size(Vtable* vt);
 
 Result* vector_get_elem(Vector* vec, size_t index);
 Result* vector_set_elem(Vector* vec, size_t index, Scalar* elem);

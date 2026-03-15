@@ -38,3 +38,10 @@ target_include_directories(result PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/result
 )
 
+add_library(inout STATIC
+    inout/inout.c    
+)
+
+target_include_directories(inout PUBLIC
+    ${PROJECT_SOURCE_DIR}/include
+)
